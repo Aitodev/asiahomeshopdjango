@@ -1,0 +1,317 @@
+{% load static %}
+<style>
+    .count-cart:after {
+        content: '{% with total_items=cart|length %}{% if cart|length > 0 %}{{ total_items }}{% else %}0{% endif %}{% endwith %}' !important;
+    }
+</style>
+<header class="main-header">
+                <!-- Header Top Start -->
+                <div class="header-top-nav">
+                    <div class="container">
+                        <div class="row">
+                            <!--Left Start-->
+                            <div class="col-lg-4 col-md-4">
+                                <div class="left-text">
+                                    <p>Добро пожаловать в Asiahomeshop</p>
+                                </div>
+                            </div>
+                            <!--Left End-->
+                            <!--Right Start-->
+                            <div class="col-lg-8 col-md-8 text-right">
+                                <div class="header-right-nav">
+                                    <div class="dropdown-navs">
+                                        <ul>
+                                            <!-- Settings Start -->
+                                            <li class="dropdown xs-after-n">
+                                                <a class="angle-icon" href="/#">Настройки</a>
+                                                    <ul class="dropdown-nav">
+                                                    <li><a href="my-account.html">Мой аккаунт</a></li>
+                                                        {% if user.is_authenticated %}
+                                                            <li><a href="{% url 'account_logout' %}">Выйти</a></li>
+                                                        {% else %}
+                                                            <li><a href="{% url 'account_login' %}">Войти</a></li>
+                                                            <li><a href="{% url 'account_signup' %}">Регистрация</a></li>
+                                                        {% endif %}
+                                                </ul>
+                                            </li>
+                                            <!-- Settings End -->
+                                            <!-- Currency Start -->
+
+                                            <!-- Currency End -->
+                                            <!-- Language Start -->
+                                            <!-- Language End -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Right End-->
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Top End -->
+                <!-- Header Buttom Start -->
+                <div class="header-navigation d-none d-lg-block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4">
+                                <!--Contact info Start -->
+                                <div class="contact-link">
+                                    <div class="phone">
+                                        <p>Позвоните нам:</p>
+                                        <a href="tel:+79269267007">+7 926 926 70 07</a>
+                                    </div>
+                                </div>
+                                <!--Contact info End -->
+                            </div>
+                            <!-- Logo Start -->
+                            <div class="col-md-4 col-sm-4">
+                                <div class="logo text-center">
+                                    <a href="/"><img src="{% static 'images/logo/logo4.png' %}" alt="" /></a>
+                                </div>
+                            </div>
+                            <!-- Logo End -->
+                            <div class="col-md-4 col-sm-4">
+                                <!--Header Bottom Account Start -->
+                                <div class="header_account_area home-2">
+                                    <!--Seach Area Start -->
+                                    <div class="header_account_list search_list">
+                                        <a href="javascript:void(0)"><i class="ion-ios-search-strong"></i></a>
+                                        <div class="dropdown_search">
+                                            <form action="/#">
+                                                <input placeholder="Search entire store here ..." type="text" />
+                                                <div class="search-category">
+                                                    <select class="bootstrap-select" name="poscats">
+                                                        <option value="0">All categories</option>
+                                                        <option value="111">
+                                                            Beauty &amp; Health
+                                                        </option>
+                                                        <option value="113">
+                                                            - - Makeup
+                                                        </option>
+                                                        <option value="117">
+                                                            - - - - Eyes
+                                                        </option>
+                                                        <option value="118">
+                                                            - - - - Lips
+                                                        </option>
+                                                        <option value="119">
+                                                            - - - - Face
+                                                        </option>
+                                                        <option value="120">
+                                                            - - - - Makeup Tools
+                                                        </option>
+                                                        <option value="114">
+                                                            - - Skin Care
+                                                        </option>
+                                                        <option value="121">
+                                                            - - - - Face
+                                                        </option>
+                                                        <option value="122">
+                                                            - - - - Eyes
+                                                        </option>
+                                                        <option value="123">
+                                                            - - - - Body
+                                                        </option>
+                                                        <option value="124">
+                                                            - - - - Skin Care Tools
+                                                        </option>
+                                                        <option value="115">
+                                                            - - Health Care
+                                                        </option>
+                                                        <option value="125">
+                                                            - - - - Massage &amp; Relaxation
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="social-info">
+                                        <ul>
+                                            <li>
+                                                <a href="https://www.instagram.com/asia_home_shop/"><i class="ion-social-instagram"></i></a>
+                                            </li>
+                                        </ul>
+                                    <div> -->
+                                    <!--Seach Area End -->
+                                    <!--Cart info Start -->
+                                    <div class="cart-info d-flex">
+                                        <div class="mini-cart-warp">
+                                            <a href="{% url 'cart:cart_detail' %}" class="count-cart"><span>{{ cart.get_total_price }}</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Cart info End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Header Bottom Account End -->
+                <!-- Menu Content Start -->
+                <div class="header-buttom-nav sticky-nav">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="main-navigation d-none d-lg-block">
+                                    <ul>
+                                        <li class="menu-dropdown">
+                                            <a href="/">Главная</a>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="{% url 'mainasia:shop' %}">Магазин </a>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="{% url 'mainasia:about' %}">О нас</a>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="{% url 'cart:cart_detail' %}">Корзина</a>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="{% url 'mainasia:blog' %}">Блог <i class="ion-ios-arrow-down"></i></a>
+                                        </li>
+                                        <li><a href="{% url 'mainasia:contact' %}">Контакты</a></li>
+                                    </ul>
+                                </div>
+                                <!--Main Navigation End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu Content End -->
+                <!-- Header Buttom Start -->
+                <div class="header-navigation sticky-nav d-lg-none">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!-- Logo Start -->
+                            <div class="col-md-2 col-sm-2">
+                                <div class="logo">
+                                    <a href="/"><img src="{% static 'images/logo/logo5.png' %}" alt="" /></a>
+                                </div>
+                            </div>
+                            <!-- Logo End -->
+                            <!-- Navigation Start -->
+                            <div class="col-md-10 col-sm-10">
+                                <!--Main Navigation Start -->
+                                <div class="main-navigation d-none d-lg-block">
+                                    <ul>
+                                        <li class="menu-dropdown">
+                                            <a href="/">Главная</a>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="/shop">Магазин <i class="ion-ios-arrow-down"></i></a>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="{% url 'mainasia:about' %}">О нас</a>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="{% url 'cart:cart_detail' %}">Корзина</a>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="{% url 'mainasia:blog' %}">Блог <i class="ion-ios-arrow-down"></i></a>
+                                            
+                                        </li>
+                                        <li><a href="{% url 'mainasia:contact' %}">Контакты</a></li>
+                                    </ul>
+                                </div>
+                                <!--Main Navigation End -->
+                                <!--Header Bottom Account Start -->
+                                <div class="header_account_area">
+                                    <!--Seach Area Start -->
+                                    <div class="header_account_list search_list">
+                                        <a href="javascript:void(0)"><i class="ion-ios-search-strong"></i></a>
+                                        <div class="dropdown_search">
+                                            <form action="/#">
+                                                <input placeholder="Search entire store here ..." type="text" />
+                                                <div class="search-category">
+                                                    <select class="bootstrap-select" name="poscats">
+                                                        <option value="0">All categories</option>
+                                                        <option value="111">
+                                                            Beauty &amp; Health
+                                                        </option>
+                                                        <option value="113">
+                                                            - - Makeup
+                                                        </option>
+                                                        <option value="117">
+                                                            - - - - Eyes
+                                                        </option>
+                                                        <option value="118">
+                                                            - - - - Lips
+                                                        </option>
+                                                        <option value="119">
+                                                            - - - - Face
+                                                        </option>
+                                                        <option value="120">
+                                                            - - - - Makeup Tools
+                                                        </option>
+                                                        <option value="114">
+                                                            - - Skin Care
+                                                        </option>
+                                                        <option value="121">
+                                                            - - - - Face
+                                                        </option>
+                                                        <option value="122">
+                                                            - - - - Eyes
+                                                        </option>
+                                                        <option value="123">
+                                                            - - - - Body
+                                                        </option>
+                                                        <option value="124">
+                                                            - - - - Skin Care Tools
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--Seach Area End -->
+                                    <!--Contact info Start -->
+                                    <div class="contact-link">
+                                        <div class="phone">
+                                            <p>Call us:</p>
+                                            <a href="tel:+79269267007">+7 926 926 70 07</a>
+                                        </div>
+                                    </div>
+                                    <!--Contact info End -->
+                                    <!--Cart info Start -->
+                                    <div class="cart-info d-flex">
+                                        <div class="mini-cart-warp">
+                                            <a href="{% url 'cart:cart_detail' %}" class="count-cart"><span>{{ cart.get_total_price }}</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Cart info End -->
+                            </div>
+                        </div>
+                        <!-- mobile menu -->
+                        <div class="mobile-menu-area">
+                            <div class="mobile-menu">
+                                <nav id="mobile-menu-active">
+                                    <ul class="menu-overflow">
+                                        <li class="menu-dropdown">
+                                            <a href="/">Главная</a>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="/shop">Магазин</a>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="{% url 'mainasia:about' %}">О нас</a>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="{% url 'cart:cart_detail' %}">Корзина</a>
+                                        </li>
+                                        <li class="menu-dropdown">
+                                            <a href="{% url 'mainasia:blog' %}">Блог</a>
+                                            
+                                        </li>
+                                        <li><a href="{% url 'mainasia:contact' %}">Контакты</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- mobile menu end-->
+                    </div>
+                </div>
+                <!--Header Bottom Account End -->
+            </header>
